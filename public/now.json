@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "alias": "habit-tracker-app",
+    "name": "habit-tracker",
+    "routes": [
+        { "handle": "filesystem" },
+        { "src": "/.*", "dest": "/index.html" }
+    ]
+
+}
