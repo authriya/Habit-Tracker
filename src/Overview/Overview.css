@@ -1,0 +1,35 @@
+
+  .overview_main {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  
+  .habits_section, .day_number, .success_section{
+    padding-left: 30px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+  
+  ul.habits_list {
+    list-style: none;
+  }
+  
+  ul.habits_list li {
+    padding: 10px;
+  }
+  
+  input.overview_button[type='button'] {
+    margin: 20px 0px;
+  }
+  
+  div.day_number {
+    background-color: grey;
+  }
+  
+  div.success_section {
+    background-color: lightgray
+  }
+  
+  h3.subheading_overview, h4.habit_best, h4.on_day, h5.consistency {
+    padding: 10px;
+  }

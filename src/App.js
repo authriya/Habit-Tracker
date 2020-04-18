@@ -7,8 +7,12 @@ import Overview from './Overview/Overview';
 import LogHabit from './Log-Habit/Log-Habit';
 import HabitPage from './Habit/Habit-Page';
 import EditHabit from './Habit/Edit-Habit';
+import './App.css'
 
 class App extends React.Component {
+  state = {
+    habits: []
+  }
   renderMainRoutes() {
     return(
       <>
@@ -67,7 +71,7 @@ class App extends React.Component {
           </ul>
         </nav>
         <header>
-          <Link to= "/overview">Habit Tracker</Link>
+          <Link to= "/overview"><h1>Habit Tracker</h1></Link>
         </header>
         <main>
           {this.renderMainRoutes()}

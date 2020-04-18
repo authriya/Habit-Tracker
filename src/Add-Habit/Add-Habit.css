@@ -1,0 +1,14 @@
+.title {
+    text-align: center;
+  }
+  
+.page_title {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(83, 83, 83)
+}
+  
+input.add_habit_input, label.add_habit_label {
+    display: block;
+    margin: 20px;
+}

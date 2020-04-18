@@ -1,0 +1,18 @@
+.graph_summary_main {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+table {
+    text-align: center
+}
+  
+table th, table tr, td {
+    padding: 10px;
+}
+  
+td.yes {
+    background-color: gray;
+}

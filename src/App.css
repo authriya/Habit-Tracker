@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    text-align: center;
+    background-color: grey;
+    padding: 30px;
+}
+
+.nav_list {
+    list-style: none;
+}
+
+header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: lightgray;
+    text-align: center;
+}
