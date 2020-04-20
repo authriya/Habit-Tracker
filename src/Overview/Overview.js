@@ -5,8 +5,16 @@ import './Overview.css'
 
 class Overview extends React.Component {
     static contextType = ApiContext
+
     render() {
-        const {habits = []} = this.context
+        let {habits = []} = this.context
+        let {day} = this.context
+        let dayWarning
+
+        if(day > 7) {
+            dayWarning = <p className = "day_warning">Looks like you've finished a week! Click on the button below to start a new week</p>
+        }
+        
         return(
             <div className="Overview">
                 <div className ="page_title"><h2 className="title">Your Overview</h2></div>
@@ -24,13 +32,9 @@ class Overview extends React.Component {
                     </div>
                     <div className="day_number">
                         <h3 className="subheading_overview"> On Day: </h3>
-                        <h4 className="on_day"> X </h4>
+                        <h4 className="on_day"> {day} </h4>
+                        {dayWarning}
                         <input type="button" value="Start New Week" className="overview_button" onClick={this.context.newWeek}/>
-                    </div>
-                    <div className="success_section">
-                        <h3 className="subheading_overview"> Your Most Consistent Habit </h3>
-                        <h4 className="habit_best"> Habit X </h4>
-                        <h5 className="consistency"> Completed : 5/7 Days </h5>
                     </div>
                 </div>
             </div>
