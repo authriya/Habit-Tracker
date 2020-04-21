@@ -6,7 +6,7 @@ class AddHabit extends React.Component {
     state = {
         name: '',
         description: '',
-        error: null
+        error: null 
     }
 
     static contextType = ApiContext
