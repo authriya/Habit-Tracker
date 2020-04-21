@@ -91,12 +91,18 @@ class App extends React.Component {
   }
 
   handleAddHabit = (habit) => {
+    let habitHistoryId
+    if(this.state.habitHistory.length === 0) {
+      habitHistoryId = 1
+    } else {
+      habitHistoryId = this.state.habitHistory[this.state.habitHistory.length - 1].id + 1
+    }
     this.setState({
       habits: [...this.state.habits, habit]
     })
     this.setState({
       habitHistory: [...this.state.habitHistory, {
-        id: this.state.habitHistory[this.state.habitHistory.length - 1].id + 1,
+        id: habitHistoryId,
         habit: habit.id,
         day1: false,
         day2: false,

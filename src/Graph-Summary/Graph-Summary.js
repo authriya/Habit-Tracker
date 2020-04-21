@@ -39,7 +39,7 @@ class GraphSummary extends React.Component {
                         <tbody>
                             {habitHistory.map(row => 
                                 <tr key={row.id}>
-                                    <td>{findHabit(habits, row.habit).name}</td>
+                                    <td><Link to ={`/habit/${row.habit}`}>{findHabit(habits, row.habit).name}</Link></td>
                                     {row.day1 ? <td className="yes"/> : <td/>}
                                     {row.day2 ? <td className="yes"/> : <td/>}
                                     {row.day3 ? <td className="yes"/> : <td/>}

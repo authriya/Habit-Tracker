@@ -91,7 +91,7 @@ class LogHabit extends React.Component {
                 {habitWarning}
                 {dayWarning}
                 {habits.map(habit => 
-                    <label htmlFor={`habit_${habit.id}`} key = {habit.id} className="log_habit_label"> {habit.name}
+                    <label htmlFor={`habit_${habit.id}`} key = {habit.id} className="log_habit_label"> <Link to = {`/habit/${habit.id}`}>{habit.name}</Link>
                         <input type="checkbox" id={`habit_${habit.id}`} name={`habit_${habit.id}`} className="log_habit_input"
                             checked={this.getCheckBoxValue(habit.id)}
                             onChange={e => this.handleCheckBoxChange(habit.id)}

@@ -26,7 +26,12 @@ class AddHabit extends React.Component {
     handleFormSubmit = (e) => {
         e.preventDefault();
         let {habits} = this.context
-        let getId = habits[habits.length - 1].id + 1
+        let getId
+        if(habits.length === 0) {
+            getId = 1
+        } else {
+            getId = habits[habits.length - 1].id + 1
+        }
         const habit = {
             id: getId,
             name: this.state.name,
