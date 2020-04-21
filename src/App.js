@@ -66,16 +66,28 @@ class App extends React.Component {
     })
   }
 
-  handleDeleteHabit = () => {
-    console.log('delete habit')
+  handleDeleteHabit = (habitId) => {
+    this.setState({
+      habits: this.state.habits.filter(habit => habit.id !== habitId),
+      habitHistory: this.state.habitHistory.filter(log => log.habit !== habitId)
+    })
   }
 
   handleNewWeek = () => {
     this.setFirstDay()
   }
 
-  handleEditHabit = () => {
-    console.log('edit habit')
+  handleEditHabit = (updatedHabit) => {
+    let habits = this.state.habits.map(function(e, i){
+      if(e.id === updatedHabit.id) {
+        return updatedHabit
+      }
+      return e
+    })
+
+    this.setState({
+      habits
+    })
   }
 
   handleAddHabit = (habit) => {
@@ -98,7 +110,9 @@ class App extends React.Component {
   }
 
   handleLogDay = (habitHistory) => {
-    console.log(habitHistory)
+    this.setState({
+      habitHistory
+    })
   }
 
   setDate = () => {
@@ -170,7 +184,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('render called')
     const value = {
       habits: this.state.habits,
       days: this.state.days,

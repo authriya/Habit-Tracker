@@ -1,5 +1,6 @@
 import React from 'react';
 import ApiContext from '../ApiContext';
+import {Link} from 'react-router-dom'
 import {findHabit} from '../Habits-Helpers'
 import './Graph-Summary.css'
 
@@ -10,10 +11,18 @@ class GraphSummary extends React.Component {
     render() {
         let {habitHistory} = this.context
         let {habits} = this.context
+
+        let habitWarning
+
+        if(habits.length === 0) {
+            habitWarning = <p className = "habit_warning">Uh oh! Looks like you haven't added a habit yet. Please click <Link to = '/add-habit'>here</Link> to add a habit</p>
+        }
+
         return(
             <div className="Graph_Summary">
                 <div className="page_title"><h2 className="title">Your Progress</h2></div>
                 <div className="graph_summary_main">
+                    {habitWarning}
                     <table>
                         <thead>
                             <tr>

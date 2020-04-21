@@ -14,7 +14,10 @@ class HabitPage extends React.Component {
 
     handleDeleteHabit = e => {
         e.preventDefault()
-        this.context.deleteHabit()
+        const {habitId} = this.props.match.params
+        const habitIdInteger = parseInt(habitId)
+        this.context.deleteHabit(habitIdInteger)
+        this.props.history.push('/overview')
     }
     render() {
         const {habits = []} = this.context
