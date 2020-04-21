@@ -8,7 +8,11 @@
     background-color: rgb(83, 83, 83)
 }
   
-input.add_habit_input, label.add_habit_label {
+.add_habit_input, .add_habit_label {
     display: block;
     margin: 20px;
+}
+
+button.add_habit_input {
+    padding: 10px;
 }

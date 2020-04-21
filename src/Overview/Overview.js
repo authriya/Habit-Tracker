@@ -9,12 +9,17 @@ class Overview extends React.Component {
     render() {
         let {habits = []} = this.context
         let {day} = this.context
+        let habitWarning
         let dayWarning
 
         if(day > 7) {
             dayWarning = <p className = "day_warning">Looks like you've finished a week! Click on the button below to start a new week</p>
         }
-        
+
+        if(habits.length === 0) {
+            habitWarning = <p className = "habit_warning">Uh oh! Looks like you haven't added a habit yet. Please click <Link to = '/add-habit'>here</Link> to add a habit</p>
+        }
+
         return(
             <div className="Overview">
                 <div className ="page_title"><h2 className="title">Your Overview</h2></div>
@@ -27,6 +32,7 @@ class Overview extends React.Component {
                                     <Link to = {`/habit/${habit.id}`}>{habit.name}</Link>
                                 </li>
                             )}
+                            {habitWarning}
                             <input type="button" value ="Delete All Habits" className="overview_button" onClick={this.context.deleteHabits}/>
                         </ul>
                     </div>

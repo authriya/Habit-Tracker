@@ -30,6 +30,6 @@
     background-color: lightgray
   }
   
-  h3.subheading_overview, h4.habit_best, h4.on_day, h5.consistency, p.day_warning {
+  h3.subheading_overview, h4.habit_best, h4.on_day, h5.consistency, p.day_warning, p.habit_warning {
     padding: 10px;
   }

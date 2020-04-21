@@ -10,4 +10,6 @@ export default React.createContext({
   deleteHabit: () => {},
   editHabit: () => {},
   newWeek: () => {},
+  addHabit: () => {},
+  logDay: () => {},
 })

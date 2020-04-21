@@ -20,9 +20,9 @@ class App extends React.Component {
     day: null
   }
   componentDidMount() {
-    setTimeout(() => this.setState(dummyStore), 600)
-    setTimeout(() => this.setDate(), 2000)
-    setTimeout(() => console.log(this.state), 5000)
+    setTimeout(() => this.setState(dummyStore), 100)
+    setTimeout(() => this.setDate(), 200)
+    setTimeout(() => console.log(this.state), 300)
   }
   renderMainRoutes() {
     return(
@@ -60,7 +60,10 @@ class App extends React.Component {
     )
   }
   handleDeleteHabits = () => {
-    console.log('delete habits')
+    this.setState({
+      habits: [],
+      habitHistory: []
+    })
   }
 
   handleDeleteHabit = () => {
@@ -73,6 +76,29 @@ class App extends React.Component {
 
   handleEditHabit = () => {
     console.log('edit habit')
+  }
+
+  handleAddHabit = (habit) => {
+    this.setState({
+      habits: [...this.state.habits, habit]
+    })
+    this.setState({
+      habitHistory: [...this.state.habitHistory, {
+        id: this.state.habitHistory[this.state.habitHistory.length - 1].id + 1,
+        habit: habit.id,
+        day1: false,
+        day2: false,
+        day3: false,
+        day4: false,
+        day5: false,
+        day6: false,
+        day7: false
+      }]
+    })
+  }
+
+  handleLogDay = (habitHistory) => {
+    console.log(habitHistory)
   }
 
   setDate = () => {
@@ -102,9 +128,25 @@ class App extends React.Component {
   }
 
   setFirstDay = () => {
+    let newHabitHistory = this.state.habitHistory
+
+    function loopOverHabits(newHabitHistory) {
+      for(let i = 0; i < newHabitHistory.length; i++) {
+        for(let j = 1; j<= 7; j++) {
+          newHabitHistory[i][`day${j}`] = false
+        }
+      }
+      return newHabitHistory
+    }
+
+    loopOverHabits(newHabitHistory)
+
     this.setState({
-      habitHistory: []
+      habitHistory: newHabitHistory
     })
+
+    setTimeout(console.log(this.state),3000) 
+
     let newDays = this.state.days
     for(let i = 0; i < this.state.days.length; i++) {
       let today = new Date();
@@ -128,6 +170,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log('render called')
     const value = {
       habits: this.state.habits,
       days: this.state.days,
@@ -136,7 +179,9 @@ class App extends React.Component {
       deleteHabits: this.handleDeleteHabits,
       deleteHabit: this.handleDeleteHabit,
       newWeek: this.handleNewWeek,
-      editHabit: this.handleEditHabit
+      editHabit: this.handleEditHabit,
+      addHabit: this.handleAddHabit,
+      logDay: this.handleLogDay
     };
     return (
       <ApiContext.Provider value = {value}>
