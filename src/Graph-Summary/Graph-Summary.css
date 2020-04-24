@@ -1,18 +1,20 @@
-.graph_summary_main {
-    margin-left: 10px;
-    margin-right: 10px;
-    padding-top: 30px;
-    padding-bottom: 50px;
-}
 
+.graph_summary_main {
+    width: 100%;
+    margin: auto;
+}
 table {
-    text-align: center
+    text-align: center;
+    width: 100%;
 }
   
 table th, table tr, td {
-    padding: 10px;
+    padding: 5px 5px;
+    font-size: 14px;
 }
   
 td.yes {
     background-color: gray;
 }
+    
+    /* if the browser window is at least 800px-s wide: */
