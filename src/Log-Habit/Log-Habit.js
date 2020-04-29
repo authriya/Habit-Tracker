@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import ApiContext from '../ApiContext';
 import './Log-Habit.css';
+import HabitsHistoryApiService from '../Services/habitshistory-api-service';
 
 class LogHabit extends React.Component {
     state = {
@@ -10,11 +11,13 @@ class LogHabit extends React.Component {
     static contextType = ApiContext
     
     componentDidMount() {
-        const {habitHistory = []} = this.context
-        this.setState({
-            habitHistory
-        })
-        setTimeout(() => console.log(this.state), 700)
+        HabitsHistoryApiService.getHistory()
+            .then((habitHistory) => {
+                this.setState({habitHistory})
+            })
+            .catch((error) => {
+                console.error({error})
+            })
     }
 
     getCheckBoxValue(habitId) {
@@ -61,10 +64,14 @@ class LogHabit extends React.Component {
     }
 
     handleSubmit(e) {
-        const {habitHistory} = this.state
         e.preventDefault()
-        this.context.logDay(habitHistory)
-        this.props.history.push('/progress')
+        
+        const {habitHistory} = this.state
+
+        HabitsHistoryApiService.patchHistory(habitHistory)
+            .then(this.context.logDay(habitHistory))
+            .catch(error => {console.error({error})})
+            .then(this.props.history.push('/progress'))
     }
 
     render() {

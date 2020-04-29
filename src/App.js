@@ -14,6 +14,7 @@ import DaysApiService from './Services/days-api-service'
 import HabitHistoryApiService from './Services/habitshistory-api-service'
 import './App.css'
 import dummyStore from './dummy-store';
+import HabitsHistoryApiService from './Services/habitshistory-api-service';
 
 class App extends React.Component {
   state = {
@@ -25,9 +26,9 @@ class App extends React.Component {
   componentDidMount() {
     HabitsApiService.getHabits()
       .then((habits) => {
-        return DaysApiService.getDays()
+        DaysApiService.getDays()
           .then((days) =>{
-            return HabitHistoryApiService.getHistory().then((habitHistory) => {
+            HabitHistoryApiService.getHistory().then((habitHistory) => {
               this.setState({
                 habits, days, habitHistory
               })
@@ -37,6 +38,7 @@ class App extends React.Component {
       .catch((error) => {
         console.error({ error })
       })
+      .then(this.setDate())
   }
   renderMainRoutes() {
     return(
@@ -173,16 +175,22 @@ class App extends React.Component {
       return newHabitHistory
     }
 
-    loopOverHabits(newHabitHistory)
+    if(newHabitHistory.length) {
+      loopOverHabits(newHabitHistory)
+      HabitsHistoryApiService.patchHistory(newHabitHistory)
+      .then(
+        this.setState({
+          habitHistory: newHabitHistory
+        })
+      )
+      .catch(error => {
+        console.error({error})
+      })
+    }
 
-    this.setState({
-      habitHistory: newHabitHistory
-    })
-
-    setTimeout(console.log(this.state),3000) 
-
-    let newDays = this.state.days
-    for(let i = 0; i < this.state.days.length; i++) {
+    setTimeout(() => {
+      let newDays = this.state.days
+      for(let i = 0; i < this.state.days.length; i++) {
       let today = new Date();
       let nextDay = new Date(today.setDate(today.getDate() + i));
       let dd = String(nextDay.getDate()).padStart(2, '0');
@@ -190,17 +198,20 @@ class App extends React.Component {
       let yyyy = today.getFullYear();
       let stringDate = mm + '/' + dd + '/' + yyyy;
       newDays[i].date = stringDate
-    }
-    this.updateDays(newDays)
+      }
+      this.updateDays(newDays)
+    }, 800)
+    
   }
 
   updateDays(newDays) {
-    this.setState({
-      days: newDays
-    })
-    this.setState({
-      day: 1
-    })
+    DaysApiService.patchDays(newDays)
+      .then(() => {
+        this.setState({
+          days: newDays,
+          day: 1
+        })
+      })
   }
 
   render() {

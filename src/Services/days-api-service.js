@@ -14,9 +14,9 @@ const DaysApiService = {
             method: 'DELETE'
         })
     },
-    postDays(newDays) {
+    patchDays(newDays) {
         return fetch(`${config.API_BASE_URL}/days`, {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             },
@@ -24,11 +24,6 @@ const DaysApiService = {
                 newDays
             ),
         })
-            .then(res => 
-                (!res.ok)
-                    ? res.json().then(e=> Promise.reject(e))
-                    : res.json()
-            )
     }
 }
 
