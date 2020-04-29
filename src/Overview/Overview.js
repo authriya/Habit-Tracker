@@ -2,12 +2,26 @@ import React from 'react';
 import ApiContext from '../ApiContext';
 import {Link} from 'react-router-dom';
 import './Overview.css'
+import HabitsApiService from '../Services/habits-api-service';
 
 class Overview extends React.Component {
+    state = {
+        habits: []
+    }
     static contextType = ApiContext
 
+    componentDidMount() {
+        HabitsApiService.getHabits()
+            .then((habits) => {
+                this.setState({habits})
+            })
+            .catch((error) => {
+                console.error({error})
+            })
+    }
+
     render() {
-        let {habits = []} = this.context
+        let {habits} = this.state
         let {day} = this.context
         let habitWarning
         let dayWarning
