@@ -3,19 +3,45 @@ import ApiContext from '../ApiContext';
 import {Link} from 'react-router-dom'
 import {findHabit} from '../Habits-Helpers'
 import './Graph-Summary.css'
+import HabitsApiService from '../Services/habits-api-service';
+import HabitsHistoryApiService from '../Services/habitshistory-api-service';
 
 class GraphSummary extends React.Component {
 
+    state = {
+        habits: [],
+        habitHistory: []
+    }
+
     static contextType = ApiContext
 
+    componentDidMount() {
+        HabitsApiService.getHabits()
+            .then((habits) => {
+                return HabitsHistoryApiService.getHistory().then((habitHistory) => {
+                    this.setState({
+                        habits,
+                        habitHistory
+                    })
+                })
+            })
+            .catch((error) => {
+                console.error({error})
+            })
+    }
+
     render() {
-        let {habitHistory} = this.context
-        let {habits} = this.context
+        let {habitHistory} = this.state
+        let {habits} = this.state
 
         let habitWarning
 
         if(habits.length === 0) {
             habitWarning = <p className = "habit_warning">Uh oh! Looks like you haven't added a habit yet. Please click <Link to = '/add-habit'>here</Link> to add a habit</p>
+        }
+
+        if(habits.length && habitHistory.length === 0) {
+            habitWarning = <p className = "habit_warning">Looks like you haven't logged your day yet. Please click <Link to = '/log-day'>here</Link> to log your day</p>
         }
 
         return(
