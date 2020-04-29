@@ -1,6 +1,7 @@
 import React from 'react';
 import {findHabit} from '../Habits-Helpers'
 import ApiContext from '../ApiContext'
+import HabitsApiService from '../Services/habits-api-service';
 
 class EditHabit extends React.Component {
     constructor(props) {
@@ -20,19 +21,17 @@ class EditHabit extends React.Component {
 
     componentDidMount() {
         const {habitId} = this.props.match.params
-        const {habits} = this.context
-        const habit = findHabit(habits, parseInt(habitId))
 
-        console.log(habits)
-
-        if(!habit) {
-            return null
-        }
-
-        this.setState({
-            name: habit.name,
-            description: habit.description
-        })
+        HabitsApiService.getHabitById(habitId)
+            .then((habit) => {
+                this.setState({
+                    name: habit.name,
+                    description: habit.description
+                })
+            })
+            .catch((error) => {
+                console.error({error})
+            })
     }
 
     nameChange(name) {
@@ -53,12 +52,16 @@ class EditHabit extends React.Component {
         const habitIdInteger = parseInt(habitId)
         
         const updatedHabit = {
-            id:habitIdInteger,
             name: this.state.name,
             description: this.state.description
         }
-        this.context.editHabit(updatedHabit)
-        this.props.history.push('/overview')
+
+        HabitsApiService.patchHabit(updatedHabit, habitIdInteger)
+            .then(this.context.editHabit(updatedHabit))
+            .catch(error => {
+                console.error({error})
+            })
+            .then(this.props.history.push('/overview'))
     }
 
 
