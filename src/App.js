@@ -9,6 +9,9 @@ import HabitPage from './Habit/Habit-Page';
 import EditHabit from './Habit/Edit-Habit';
 import {findDate} from './Habits-Helpers'
 import ApiContext from './ApiContext'
+import HabitsApiService from './Services/habits-api-service'
+import DaysApiService from './Services/days-api-service'
+import HabitHistoryApiService from './Services/habitshistory-api-service'
 import './App.css'
 import dummyStore from './dummy-store';
 
@@ -20,9 +23,20 @@ class App extends React.Component {
     day: null
   }
   componentDidMount() {
-    setTimeout(() => this.setState(dummyStore), 100)
-    setTimeout(() => this.setDate(), 200)
-    setTimeout(() => console.log(this.state), 300)
+    HabitsApiService.getHabits()
+      .then((habits) => {
+        return DaysApiService.getDays()
+          .then((days) =>{
+            return HabitHistoryApiService.getHistory().then((habitHistory) => {
+              this.setState({
+                habits, days, habitHistory
+              })
+            })
+          })
+      })
+      .catch((error) => {
+        console.error({ error })
+      })
   }
   renderMainRoutes() {
     return(
