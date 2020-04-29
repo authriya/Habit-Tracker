@@ -1,6 +1,7 @@
 import React from 'react';
 import ApiContext from '../ApiContext'
 import './Add-Habit.css'
+import HabitsApiService from '../Services/habits-api-service';
 
 class AddHabit extends React.Component {
     state = {
@@ -25,24 +26,24 @@ class AddHabit extends React.Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        let {habits} = this.context
-        let getId
-        if(habits.length === 0) {
-            getId = 1
-        } else {
-            getId = habits[habits.length - 1].id + 1
-        }
+
         const habit = {
-            id: getId,
-            name: this.state.name,
+            name: this.state.name, 
             description: this.state.description
         }
-        this.context.addHabit(habit)
-        this.setState({
-            name: '',
-            description: ''
-        })
-        this.props.history.push('/overview')
+        this.setState({error: null})
+        HabitsApiService.postHabit(habit)
+            .then(this.context.addHabit(habit))
+            .then(() => {setTimeout(
+                this.setState({
+                    name: '',
+                    description: ''
+                }), 1000
+            )})
+            .catch(res => {
+                this.setState({error: res.error})
+            })
+            .then(this.props.history.push('/overview'))
     }
 
     render() {
