@@ -38,11 +38,11 @@ class HabitPage extends React.Component {
         HabitsApiService.deleteAHabit(habitIdInteger)
             .then(() => {
                 this.context.deleteHabit(habitIdInteger)
+                this.props.history.push('/overview')
             })
             .catch((error) => {
                 console.error({error})
             })
-            .then(this.props.history.push('/overview'))
     }
 
     render() {
