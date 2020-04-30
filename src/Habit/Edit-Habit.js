@@ -57,11 +57,13 @@ class EditHabit extends React.Component {
         }
 
         HabitsApiService.patchHabit(updatedHabit, habitIdInteger)
-            .then(this.context.editHabit(updatedHabit))
+            .then(() => {
+                this.context.editHabit(updatedHabit)
+                this.props.history.push('/overview')
+            })
             .catch(error => {
                 console.error({error})
             })
-            .then(this.props.history.push('/overview'))
     }
 
 

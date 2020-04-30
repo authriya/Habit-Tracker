@@ -3,17 +3,22 @@ import {Link} from 'react-router-dom';
 import ApiContext from '../ApiContext';
 import './Log-Habit.css';
 import HabitsHistoryApiService from '../Services/habitshistory-api-service';
+import HabitsApiService from '../Services/habits-api-service';
 
 class LogHabit extends React.Component {
     state = {
+        habits: [],
         habitHistory: []
     }
     static contextType = ApiContext
     
     componentDidMount() {
-        HabitsHistoryApiService.getHistory()
-            .then((habitHistory) => {
-                this.setState({habitHistory})
+        HabitsApiService.getHabits()
+            .then((habits) => {
+                HabitsHistoryApiService.getHistory()
+                    .then((habitHistory) => {
+                        this.setState({habits, habitHistory})
+                    })
             })
             .catch((error) => {
                 console.error({error})
@@ -77,7 +82,7 @@ class LogHabit extends React.Component {
     }
 
     render() {
-        const {habits = []} = this.context
+        const {habits} = this.state
         const {day} = this.context
         
         let habitWarning
