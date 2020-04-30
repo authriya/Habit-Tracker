@@ -76,10 +76,16 @@ class App extends React.Component {
     )
   }
   handleDeleteHabits = () => {
-    this.setState({
-      habits: [],
-      habitHistory: []
-    })
+    HabitsApiService.deleteAllHabits()
+      .then(() => {
+        HabitsHistoryApiService.deleteHistory()
+          .then(() => {
+            this.setState({
+              habits: [],
+              habitHistory: []
+            })
+          })
+      })
   }
 
   handleDeleteHabit = (habitId) => {
@@ -200,7 +206,7 @@ class App extends React.Component {
       newDays[i].date = stringDate
       }
       this.updateDays(newDays)
-    }, 800)
+    }, 1000)
     
   }
 

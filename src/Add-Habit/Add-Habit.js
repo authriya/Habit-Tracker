@@ -2,6 +2,7 @@ import React from 'react';
 import ApiContext from '../ApiContext'
 import './Add-Habit.css'
 import HabitsApiService from '../Services/habits-api-service';
+import HabitsHistoryApiService from '../Services/habitshistory-api-service';
 
 class AddHabit extends React.Component {
     state = {
@@ -33,17 +34,27 @@ class AddHabit extends React.Component {
         }
         this.setState({error: null})
         HabitsApiService.postHabit(habit)
-            .then(this.context.addHabit(habit))
-            .then(() => {setTimeout(
-                this.setState({
+            .then((habit) => {
+                HabitsHistoryApiService.postHistory({
+                    habit: habit.id,
+                    day1: null,
+                    day2: null,
+                    day3: null,
+                    day4: null,
+                    day5: null,
+                    day6: null,
+                    day7: null
+                })
+                .then(this.context.addHabit(habit))
+                .then(this.setState({
                     name: '',
                     description: ''
-                }), 1000
-            )})
-            .catch(res => {
-                this.setState({error: res.error})
+                }))
+                .catch(res => {
+                    this.setState({error: res.error})
+                })
+                .then(this.props.history.push('/overview'))
             })
-            .then(this.props.history.push('/overview'))
     }
 
     render() {

@@ -29,6 +29,8 @@ class LogHabit extends React.Component {
             let log = habitHistory.find(log => log.habit === habitId)
             if(!log) {
                 return false
+            } else if(log[`day${day}`] == null){
+                return false
             } else {
                 return log[`day${day}`]
             }
