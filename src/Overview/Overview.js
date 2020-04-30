@@ -20,12 +20,13 @@ class Overview extends React.Component {
             })
     }
 
-    handleDeleteHabits() {
+    handleDeleteHabits= e => {
+        e.preventDefault()
         HabitsApiService.deleteAllHabits()
             .then(() => {
                 this.context.deleteHabits()
-                HabitsApiService.getHabits().then((habits) => {
-                    this.setState({habits})
+                this.setState({
+                    habits: []
                 })
             })
     }
@@ -57,7 +58,7 @@ class Overview extends React.Component {
                                 </li>
                             )}
                             {habitWarning}
-                            <input type="button" value ="Delete All Habits" className="overview_button" onClick={this.context.deleteAllHabits}/>
+                            <input type="button" value ="Delete All Habits" className="overview_button" onClick={this.handleDeleteHabits}/>
                         </ul>
                     </div>
                     <div className="day_number">
