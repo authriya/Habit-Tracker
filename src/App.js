@@ -28,6 +28,7 @@ class App extends React.Component {
       .then((habits) => {
         DaysApiService.getDays()
           .then((days) =>{
+            this.setDate()
             HabitHistoryApiService.getHistory().then((habitHistory) => {
               this.setState({
                 habits, days, habitHistory
@@ -38,7 +39,6 @@ class App extends React.Component {
       .catch((error) => {
         console.error({ error })
       })
-      .then(this.setDate())
   }
   renderMainRoutes() {
     return(
