@@ -24,27 +24,21 @@ class App extends React.Component {
     day: null
   }
   componentDidMount() {
-    //HabitsApiService.getHabits()
-      //.then((habits) => {
-        //DaysApiService.getDays()
-          //.then((days) =>{
-            //this.setDate()
-            //HabitsHistoryApiService.getHistory().then((habitHistory) => {
-              //this.setState({
-                //habits, days, habitHistory
-              //})
-            //})
-          //})
-      //})
-      //.catch((error) => {
-        //console.error({ error })
-      //})
-    setTimeout(() => {
-      this.setState(dummyStore)
-    }, 1000)
-    setTimeout(() => {
-      this.setDate()
-    }, 2000)
+    HabitsApiService.getHabits()
+      .then((habits) => {
+        DaysApiService.getDays()
+          .then((days) =>{
+            this.setDate()
+            HabitsHistoryApiService.getHistory().then((habitHistory) => {
+              this.setState({
+                habits, days, habitHistory
+              })
+            })
+          })
+      })
+      .catch((error) => {
+        console.error({ error })
+      })
   }
   renderMainRoutes() {
     return(
