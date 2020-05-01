@@ -50,9 +50,10 @@ class HabitPage extends React.Component {
         const {habitId} = this.props.match.params
         return(
             <div className="Habit_Page">
-                <h2 className="habit_title">{name}</h2>
-                <p className="habit_description">{description}</p>
-                <Link to ={`/edit-habit/${habitId}`}><input type="button" value="Edit Habit" className="habit_page_button"/></Link><input type="button" value="Delete Habit" className="habit_page_button" onClick = {this.handleDeleteHabit}/>
+                <Link to ={`/overview`}><button className = "back_button"><i className = "fas fa-chevron-left"></i>Overview</button></Link>
+                <h2 className="habit_title">Habit 1</h2>
+                <p className="habit_description">Habit 1</p>
+                <Link to ={`/edit-habit/${habitId}`}><input type="button" value="Edit Habit" className="habit_page_button start"/></Link><input type="button" value="Delete Habit" className="habit_page_button delete" onClick = {this.handleDeleteHabit}/>
             </div>
         )
     }

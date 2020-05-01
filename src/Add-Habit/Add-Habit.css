@@ -5,7 +5,7 @@
 .page_title {
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: rgb(83, 83, 83)
+    color: rgb(10, 49, 30);
 }
   
 .add_habit_input, .add_habit_label {
@@ -15,4 +15,37 @@
 
 button.add_habit_input {
     padding: 10px;
+}
+
+input:focus {
+    outline: none;
+}
+
+label {
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+button.add_habit_input {
+    border: 1px solid rgb(24, 116, 70);
+    background-color: rgb(24, 116, 70);
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+button.add_habit_input:active, button.add_habit_input:focus {
+    outline: none;
+}
+
+@media only screen and (min-width: 533px) {
+    label {
+        font-size: 22px;
+    }
+    input {
+        font-size: 16px;
+    }
+    button.add_habit_input {
+        font-size: 16px;
+    }
 }

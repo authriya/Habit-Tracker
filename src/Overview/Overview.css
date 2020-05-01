@@ -1,9 +1,8 @@
 
-  .overview_main {
-    padding-top: 30px;
-    padding-bottom: 30px;
+  h3 {
+    font-family: 'Alegreya Sans', sans-serif;
   }
-  
+
   .habits_section, .day_number, .success_section{
     padding-left: 30px;
     padding-bottom: 20px;
@@ -17,13 +16,13 @@
   ul.habits_list li {
     padding: 10px;
   }
+
+  ul.habits_list li a{
+    color: rgb(24, 116, 70)
+  }
   
   input.overview_button[type='button'] {
     margin: 20px 0px;
-  }
-  
-  div.day_number {
-    background-color: grey;
   }
   
   div.success_section {
@@ -32,4 +31,55 @@
   
   h3.subheading_overview, h4.habit_best, h4.on_day, h5.consistency, p.day_warning, p.habit_warning {
     padding: 10px;
+  }
+
+  .day_warning a, .habit_warning a {
+    text-decoration: none;
+    color: rgb(14, 88, 14)
+  }
+
+  .overview_button {
+    border: 1px solid rgb(24, 116, 70);
+    background-color: rgb(24, 116, 70);
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+  }
+
+  .delete:hover, .delete:active {
+    background-color: rgb(167, 12, 12);
+    transition: 0.5s;
+    cursor: pointer;
+  }
+
+  .start:hover, .start:active {
+    cursor: pointer;
+    background-color: rgb(42, 175, 109);
+    color: black;
+    transition: 0.5s;
+  }
+
+  @media only screen and (min-width: 533px) {
+    .page_title {
+      font-size: 22px;
+    }
+
+    .subheading_overview {
+      font-size: 25px
+    }
+
+    ul.habits_list li {
+      font-size: 18px;
+    }
+
+    h4.on_day {
+      font-size: 20px;
+    }
+    .overview_button {
+      font-size: 16px;
+    }
+    .day_warning, .habit_warning {
+      font-size: 18px;
+    }
   }

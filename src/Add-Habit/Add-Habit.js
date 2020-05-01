@@ -63,10 +63,10 @@ class AddHabit extends React.Component {
                 <div className = "page_title"><h2 className="title">Add a Habit</h2></div>
                 <form className="add_habit" onSubmit={e => this.handleFormSubmit(e)}>
                     <label htmlFor="habit_name" className="add_habit_label">Habit Name </label>
-                    <input id="habit_name" type="text" name="habit_name" className="add_habit_input" onChange={e => this.handleNameChange(e.target.value)}/>
+                    <input id="habit_name" type="text" name="habit_name" className="add_habit_input" onChange={e => this.handleNameChange(e.target.value)} required/>
                     <label htmlFor="habit_description" className="add_habit_label">Habit description</label>
-                    <input id="habit_description" type="text" name="habit_description" className="add_habit_input" onChange={e => this.handleDescChange(e.target.value)}/>
-                    <button type="submit" value="Add Habit" className="add_habit_input"> Add Habit </button>
+                    <input id="habit_description" type="text" name="habit_description" className="add_habit_input" onChange={e => this.handleDescChange(e.target.value)} required/>
+                    <button type="submit" value="Add Habit" className="add_habit_input start"> Add Habit </button>
                 </form>
             </div>
         )

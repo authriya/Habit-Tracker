@@ -2,13 +2,15 @@
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: rgb(104, 103, 103)
 }
   
 .page_subheading {
-    padding-bottom: 10px;
-    background-color: lightgrey
+    padding-bottom: 5px;
   }
+
+.page_subheading .subheading {
+  font-size: 20px;
+}
   
   label {
     display: block;
@@ -27,4 +29,14 @@
   .day_tracker {
       margin-left: 30px;
       padding: 10px;
+  }
+
+  .log_habit_label a {
+    color:  rgb(24, 116, 70)
+  }
+
+  @media only screen and (min-width: 533px) {
+    .page_subheading .subheading {
+      font-size: 25px
+    }
   }

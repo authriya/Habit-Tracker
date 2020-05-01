@@ -1,6 +1,6 @@
 
 .graph_summary_main {
-    width: 100%;
+    width: 98%;
     margin: auto;
 }
 table {
@@ -10,11 +10,22 @@ table {
   
 table th, table tr, td {
     padding: 5px 5px;
-    font-size: 14px;
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
 }
   
 td.yes {
-    background-color: gray;
+    background-color: rgb(24, 116, 70);
+}
+
+td a {
+    color: rgb(24, 116, 70)
 }
     
-    /* if the browser window is at least 800px-s wide: */
+@media only screen and (min-width: 533px) {
+    table th, table tr, td {
+        padding: 5px 5px;
+        font-size: 20px;
+        font-family: 'Roboto', sans-serif;
+    }
+  }

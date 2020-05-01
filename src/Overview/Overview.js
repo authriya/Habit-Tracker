@@ -33,7 +33,7 @@ class Overview extends React.Component {
 
     render() {
         let {habits} = this.state
-        let {day} = this.context
+        let {day} = this.state
         let habitWarning
         let dayWarning
 
@@ -58,14 +58,14 @@ class Overview extends React.Component {
                                 </li>
                             )}
                             {habitWarning}
-                            <input type="button" value ="Delete All Habits" className="overview_button" onClick={this.handleDeleteHabits}/>
+                            <input type="button" value ="Delete All Habits" className="overview_button delete" onClick={this.handleDeleteHabits}/>
                         </ul>
                     </div>
                     <div className="day_number">
                         <h3 className="subheading_overview"> On Day: </h3>
                         <h4 className="on_day"> {day} </h4>
                         {dayWarning}
-                        <input type="button" value="Start New Week" className="overview_button" onClick={this.context.newWeek}/>
+                        <input type="button" value="Start New Week" className="overview_button start" onClick={this.context.newWeek}/>
                     </div>
                 </div>
             </div>

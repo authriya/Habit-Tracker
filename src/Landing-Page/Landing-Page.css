@@ -1,19 +1,22 @@
-
-  
   .subheading {
     text-align: center;
     margin: 0 10px;
-  }
-  
-  .subheading {
-    font-size: 22px;
+    font-size: 25px;
     padding-bottom: 10px;
     padding-top: 20px;
+    color: rgb(10, 49, 30);
   }
   
   p.app_summary {
     padding-left: 30px;
     padding-right: 20px;
     margin-bottom: 10px;
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1.5
+  }
+
+  @media only screen and (min-width: 533px) {
+    .subheading {
+      font-size: 30px;
+    }
   }

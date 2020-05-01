@@ -94,7 +94,7 @@ class LogHabit extends React.Component {
         }
 
         if(day > 7) {
-            dayWarning = <div className="day_warning_section"><p className = "day_warning">Whoops- looks like you're out of days. Please click the button below to start a new week </p> <input type="button" value="Start New Week" className="overview_button" onClick={e => this.handleChangeWeek()}/></div>
+            dayWarning = <div className="day_warning_section"><p className = "day_warning">Whoops- looks like you're out of days. Please click the button below to start a new week </p> <input type="button" value="Start New Week" className="overview_button start" onClick={e => this.handleChangeWeek()}/></div>
         }
 
         return(
@@ -112,7 +112,7 @@ class LogHabit extends React.Component {
                         />
                     </label>
                 )}
-                {habits.length !== 0 && day <= 7 ? <button className="log_habit_input" value="submit">Submit</button> : null}
+                {habits.length !== 0  && day <= 7 ? <button className="log_habit_input overview_button start" value="submit">Submit</button> : null}
             </form>
         </div>
         )

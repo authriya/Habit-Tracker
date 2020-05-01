@@ -1,9 +1,52 @@
 .Habit_Page {
-    margin: 40px 0px;
     padding: 50px 30px;
 }
 
-.habit_page_button {
+.habit_page_button, .back_button {
+    border: 1px solid rgb(24, 116, 70);
+    background-color: rgb(24, 116, 70);
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
     margin-top: 20px;
-    margin-right: 5px;
+    margin-right: 10px;
+}
+
+i.fa-chevron-left {
+    padding-right: 10px;
+}
+
+.back_button {
+    margin-bottom: 30px;
+}
+
+.back_button:hover {
+    cursor: pointer;
+}
+
+.back_button:active {
+    outline: none;
+}
+
+h2.habit_title {
+    padding: 20px 0px;
+}
+
+.habit_description {
+    padding: 5px 0px;
+}
+
+@media only screen and (min-width: 533px) {
+    .habit_page_button, .back_button {
+        font-size: 16px;
+    }
+
+    h2.habit_title {
+        font-size: 28px;
+    }
+    
+    .habit_description {
+        font-size: 18px;
+    }
 }

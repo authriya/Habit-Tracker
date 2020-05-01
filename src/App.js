@@ -11,10 +11,10 @@ import {findDate} from './Habits-Helpers'
 import ApiContext from './ApiContext'
 import HabitsApiService from './Services/habits-api-service'
 import DaysApiService from './Services/days-api-service'
-import HabitHistoryApiService from './Services/habitshistory-api-service'
+import HabitsHistoryApiService from './Services/habitshistory-api-service'
+import Collapsible from 'react-collapsible'
 import './App.css'
 import dummyStore from './dummy-store';
-import HabitsHistoryApiService from './Services/habitshistory-api-service';
 
 class App extends React.Component {
   state = {
@@ -24,21 +24,27 @@ class App extends React.Component {
     day: null
   }
   componentDidMount() {
-    HabitsApiService.getHabits()
-      .then((habits) => {
-        DaysApiService.getDays()
-          .then((days) =>{
-            this.setDate()
-            HabitHistoryApiService.getHistory().then((habitHistory) => {
-              this.setState({
-                habits, days, habitHistory
-              })
-            })
-          })
-      })
-      .catch((error) => {
-        console.error({ error })
-      })
+    //HabitsApiService.getHabits()
+      //.then((habits) => {
+        //DaysApiService.getDays()
+          //.then((days) =>{
+            //this.setDate()
+            //HabitsHistoryApiService.getHistory().then((habitHistory) => {
+              //this.setState({
+                //habits, days, habitHistory
+              //})
+            //})
+          //})
+      //})
+      //.catch((error) => {
+        //console.error({ error })
+      //})
+    setTimeout(() => {
+      this.setState(dummyStore)
+    }, 1000)
+    setTimeout(() => {
+      this.setDate()
+    }, 2000)
   }
   renderMainRoutes() {
     return(
@@ -233,28 +239,33 @@ class App extends React.Component {
       addHabit: this.handleAddHabit,
       logDay: this.handleLogDay
     };
+
     return (
       <ApiContext.Provider value = {value}>
         <div className='App'>
-          <nav className="navbar">
-            <ul className ="nav_list">
-              <li>
-                <Link to="/">About</Link>
-              </li>
-              <li>
-                <Link to='/overview'>Overview</Link>
-              </li>
-              <li>
-                <Link to="/add-habit">Add Habit</Link>
-              </li>
-              <li>
-                <Link to ="/log-day">Log Day</Link>
-              </li>
-              <li>
-                <Link to = "/progress">Progress</Link>
-              </li>
-            </ul>
-          </nav>
+          <div className="navbar">
+            <Collapsible trigger = {<><span className="nav-title">Menu</span><i class="fas fa-chevron-down"></i></>}
+              triggerWhenOpen = {<><span className="nav-title">Menu</span><i class="fas fa-chevron-up"></i></>}
+            >
+              <ul className= 'nav-list'>
+                  <li className="nav-item">
+                    <Link to="/">About</Link>
+                  </li>
+                  <li>
+                    <Link to='/overview'>Overview</Link>
+                  </li>
+                  <li>
+                    <Link to="/add-habit">Add Habit</Link>
+                  </li>
+                  <li>
+                    <Link to ="/log-day">Log Day</Link>
+                  </li>
+                  <li>
+                    <Link to = "/progress">Progress</Link>
+                  </li>
+                </ul>
+            </Collapsible>
+          </div>
           <header>
             <Link to= "/overview"><h1>Habit Tracker</h1></Link>
           </header>
