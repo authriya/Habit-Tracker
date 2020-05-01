@@ -5,6 +5,10 @@
     font-family: 'Roboto', sans-serif;
 }
 
+main {
+    margin-bottom: 30px;
+}
+
 .navbar {
     text-align: center;
     padding: 20px;
