@@ -33,7 +33,7 @@ class Overview extends React.Component {
 
     render() {
         let {habits} = this.state
-        let {day} = this.state
+        let {day} = this.context
         let habitWarning
         let dayWarning
 
