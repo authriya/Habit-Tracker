@@ -3,7 +3,7 @@
     font-family: 'Alegreya Sans', sans-serif;
   }
 
-  .habits_section, .day_number, .success_section{
+  .habits_section, .day_number{
     padding-left: 30px;
     padding-bottom: 20px;
     padding-top: 20px;
@@ -23,10 +23,6 @@
   
   input.overview_button[type='button'] {
     margin: 20px 0px;
-  }
-  
-  div.success_section {
-    background-color: lightgray
   }
   
   h3.subheading_overview, h4.habit_best, h4.on_day, h5.consistency, p.day_warning, p.habit_warning {
@@ -81,5 +77,16 @@
     }
     .day_warning, .habit_warning {
       font-size: 18px;
+    }
+  }
+  @media only screen and (min-width: 700px) {
+    div.parent {
+      padding: 20px;
+      height: 100%;
+    }
+    div.child {
+      width: 50%;
+      float: left;
+      padding: 20px;
     }
   }

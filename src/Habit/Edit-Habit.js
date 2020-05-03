@@ -1,5 +1,4 @@
 import React from 'react';
-import {findHabit} from '../Habits-Helpers'
 import ApiContext from '../ApiContext'
 import HabitsApiService from '../Services/habits-api-service';
 

@@ -14,7 +14,6 @@ import DaysApiService from './Services/days-api-service'
 import HabitsHistoryApiService from './Services/habitshistory-api-service'
 import Collapsible from 'react-collapsible'
 import './App.css'
-import dummyStore from './dummy-store';
 
 class App extends React.Component {
   state = {

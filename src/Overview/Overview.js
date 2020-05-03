@@ -48,8 +48,8 @@ class Overview extends React.Component {
         return(
             <div className="Overview">
                 <div className ="page_title"><h2 className="title">Your Overview</h2></div>
-                <div className="overview_main">
-                    <div className="habits_section">
+                <div className ="parent">
+                    <div className="habits_section child">
                         <h3 className="subheading_overview"> Habits </h3>
                         <ul className="habits_list">
                             {habits.map(habit => 
@@ -61,7 +61,7 @@ class Overview extends React.Component {
                             <input type="button" value ="Delete All Habits" className="overview_button delete" onClick={this.handleDeleteHabits}/>
                         </ul>
                     </div>
-                    <div className="day_number">
+                    <div className="day_number child">
                         <h3 className="subheading_overview"> On Day: </h3>
                         <h4 className="on_day"> {day} </h4>
                         {dayWarning}

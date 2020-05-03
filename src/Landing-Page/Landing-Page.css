@@ -15,6 +15,10 @@
     line-height: 1.5
   }
 
+  p.app_summary a {
+    color: green
+  }
+
   @media only screen and (min-width: 533px) {
     .subheading {
       font-size: 30px;
