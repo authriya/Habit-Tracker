@@ -1,68 +1,87 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+HABIT TRACKER
+================
 
-## Available Scripts
+Link to Live Website
+--------------------
+https://habit-tracker-app.now.sh/
 
-In the project directory, you can run:
+About the App
+-------------
+## An app that confirms that you are, in fact, still adulting
+This quarantine's pretty stressful, to say the least. It's hard to maintain some semblance of normalcy while still being gentle with yourself, and to strike that balance between being productive and not putting too much pressure on yourself as you're coping with an unprecedented world event.
 
-### `npm start`
+I created the Habit Tracker with this balance in mind– I wanted to create an app that lets you set tasks that you ideally want to do every day– but doesn't pressure you to do them at any particular time. Here's how it works– add a task (or two, or three), and everyday that you perform that task, log it in the tracker. You can view your progress and see how you did over the course of a week. Didn't do so hot? That's ok, with every new week, you get a fresh new slate to do better! The timespan of a week to track your habits is the ideal middle ground between taking it one day at a time, and giving yourself a flexible routine.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Instructions
+Start off by adding a habit on the Add Habit tab.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![/add-habit screenshot](./screenshots/Add-Habit.png "Add Habit")
 
-### `npm test`
+Log your progress everyday under the Log Day tab. 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![/log-day screenshot](./screenshots/Log-Day.png "Log Day")
 
-### `npm run build`
+See a graph of your habits' progress in the Progress tab. 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![/progress screenshot](./screenshots/Progress.png "Progress")
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+To see a summary of the habits you're tracking, what day you're on in the week, or to refresh to a new week go to the Overview tab.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![/overview screenshot](./screenshots/Overview.png "Overview")
 
-### `npm run eject`
+Have fun tracking, and stay healthy, safe, and happy!
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+API Documentation
+-----------------
+## Habits
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+GET '/api/habits' - Gets all habits
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+POST '/api/habits' - Posts new habit
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+DELETE '/api/habits' - Deletes all habits
 
-## Learn More
+GET '/api/habits/:habitId' - Gets a habit by ID
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+PATCH '/api/habits/:habitId' - Updates habits by ID
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Habit History
 
-### Code Splitting
+GET '/api/habithistory' - Gets all history
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+POST '/api/habithistory' - Posts new history for a habit
 
-### Analyzing the Bundle Size
+DELETE '/api/habithistory' - Deletes all history
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+PATCH '/api/habithistory' - Updates entire habit history table with a new table
 
-### Making a Progressive Web App
+GET '/api/habithistory/:habitId' - Gets a habits history by the habit ID
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Days
 
-### Advanced Configuration
+GET '/api/days' - Gets all days
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+DELETE '/api/days' - Deletes all days
 
-### Deployment
+PATCH '/api/days' - Updates entire days table
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Errors
+The API uses conventional HTTP response codes for error signalling. Common error codes are as follows:
 
-### `npm run build` fails to minify
+200- OK 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+400- Bad request, often due to missing parameter
+
+401- Unauthorized, no valid API key. Log back in with credentials or sign up for an account if you don't have one.
+
+403- Forbidden, your API key doesn't have the credentials to perform this request
+
+404- Not found, bad endpoint. Check for typos.
+
+500, 502, 503, 504 - Server Errors	Something went wrong on the API's end.
+
+Tech Used
+---------
+Client: ReactJS, React Router, JSX, Javascript, JSON, HTML, CSS
+
+API: Javascript, Node, Express, RESTful APIs, Helmet, XSS, Morgan, Postgres, PSQL, DBeaver, CORS, knex, Chai 
