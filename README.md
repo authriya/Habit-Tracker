@@ -1,4 +1,4 @@
-HABIT TRACKER
+![logo screenshot](./screenshots/Logo.png "Logo")
 ================
 
 Link to Live Website
