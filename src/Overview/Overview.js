@@ -21,7 +21,7 @@ class Overview extends React.Component {
     }
 
     handleDeleteHabits= e => {
-        e.preventDefault()
+        e.preventDefault();
         HabitsApiService.deleteAllHabits()
             .then(() => {
                 this.context.deleteHabits()
@@ -32,10 +32,10 @@ class Overview extends React.Component {
     }
 
     render() {
-        let {habits} = this.state
-        let {day} = this.context
-        let habitWarning
-        let dayWarning
+        let {habits} = this.state;
+        let {day} = this.context;
+        let habitWarning;
+        let dayWarning;
 
         if(day > 7) {
             dayWarning = <p className = "day_warning">Looks like you've finished a week! Click on the button below to start a new week</p>

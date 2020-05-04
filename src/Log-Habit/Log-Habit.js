@@ -27,7 +27,7 @@ class LogHabit extends React.Component {
 
     getCheckBoxValue(habitId) {
         const {habitHistory} = this.state;
-        const {day}= this.context
+        const {day}= this.context;
         if(day > 7) {
             return false
         } else {
@@ -43,8 +43,8 @@ class LogHabit extends React.Component {
     }
 
     handleCheckBoxChange(habitId) {
-        const {habitHistory} = this.state
-        const {day} = this.context
+        const {habitHistory} = this.state;
+        const {day} = this.context;
 
         let newHabitHistory = habitHistory
         if(day > 7) {
@@ -64,16 +64,16 @@ class LogHabit extends React.Component {
     }
 
     handleChangeWeek() {
-        this.context.newWeek()
+        this.context.newWeek();
         this.setState({
             habitHistory: this.context.habitHistory
         })
     }
 
     handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         
-        const {habitHistory} = this.state
+        const {habitHistory} = this.state;
 
         HabitsHistoryApiService.patchHistory(habitHistory)
             .then(this.context.logDay(habitHistory))
@@ -82,12 +82,12 @@ class LogHabit extends React.Component {
     }
 
     render() {
-        const {habits} = this.state
-        const {day} = this.context
+        const {habits} = this.state;
+        const {day} = this.context;
         
-        let habitWarning
+        let habitWarning;
 
-        let dayWarning
+        let dayWarning;
 
         if(habits.length === 0) {
             habitWarning = <p className = "habit_warning">Uh oh! Looks like you haven't added a habit yet. Please click <Link to = '/add-habit'>here</Link> to add a habit</p>

@@ -31,10 +31,10 @@ class GraphSummary extends React.Component {
     }
 
     render() {
-        let {habitHistory} = this.state
-        let {habits} = this.state
+        let {habitHistory} = this.state;
+        let {habits} = this.state;
 
-        let habitWarning
+        let habitWarning;
 
         if(habits.length === 0) {
             habitWarning = <p className = "habit_warning">Uh oh! Looks like you haven't added a habit yet. Please click <Link to = '/add-habit'>here</Link> to add a habit</p>

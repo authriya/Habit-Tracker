@@ -16,10 +16,10 @@ class EditHabit extends React.Component {
         }
     }
 
-    static contextType = ApiContext
+    static contextType = ApiContext;
 
     componentDidMount() {
-        const {habitId} = this.props.match.params
+        const {habitId} = this.props.match.params;
 
         HabitsApiService.getHabitById(habitId)
             .then((habit) => {
@@ -47,13 +47,13 @@ class EditHabit extends React.Component {
 
     handleEditSubmit(e) {
         e.preventDefault()
-        const {habitId} = this.props.match.params
-        const habitIdInteger = parseInt(habitId)
+        const {habitId} = this.props.match.params;
+        const habitIdInteger = parseInt(habitId);
         
         const updatedHabit = {
             name: this.state.name,
             description: this.state.description
-        }
+        };
 
         HabitsApiService.patchHabit(updatedHabit, habitIdInteger)
             .then(() => {

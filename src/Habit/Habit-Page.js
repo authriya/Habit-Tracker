@@ -14,11 +14,11 @@ class HabitPage extends React.Component {
             params: {}
         }
     }
-    static contextType = ApiContext
+    static contextType = ApiContext;
 
     componentDidMount() {
-        const {habitId} = this.props.match.params
-        const habitIdInteger = parseInt(habitId) 
+        const {habitId} = this.props.match.params;
+        const habitIdInteger = parseInt(habitId); 
         HabitsApiService.getHabitById(habitIdInteger)
             .then(habit => {
                 this.setState({
@@ -32,9 +32,9 @@ class HabitPage extends React.Component {
     }
 
     handleDeleteHabit = e => {
-        e.preventDefault()
-        const {habitId} = this.props.match.params
-        const habitIdInteger = parseInt(habitId)
+        e.preventDefault();
+        const {habitId} = this.props.match.params;
+        const habitIdInteger = parseInt(habitId);
         HabitsApiService.deleteAHabit(habitIdInteger)
             .then(() => {
                 this.context.deleteHabit(habitIdInteger)
@@ -46,8 +46,8 @@ class HabitPage extends React.Component {
     }
 
     render() {
-        const {name, description} = this.state
-        const {habitId} = this.props.match.params
+        const {name, description} = this.state;
+        const {habitId} = this.props.match.params;
         return(
             <div className="Habit_Page">
                 <Link to ={`/overview`}><button className = "back_button"><i className = "fas fa-chevron-left"></i>Overview</button></Link>

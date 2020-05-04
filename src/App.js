@@ -27,7 +27,8 @@ class App extends React.Component {
       .then((habits) => {
         DaysApiService.getDays()
           .then((days) =>{
-            this.setDate()
+            //GET days then set the day in context
+            this.setDate() 
             HabitsHistoryApiService.getHistory().then((habitHistory) => {
               this.setState({
                 habits, days, habitHistory
@@ -104,7 +105,7 @@ class App extends React.Component {
         return updatedHabit
       }
       return e
-    })
+    });
 
     this.setState({
       habits
@@ -112,7 +113,7 @@ class App extends React.Component {
   }
 
   handleAddHabit = (habit) => {
-    let habitHistoryId
+    let habitHistoryId;
     if(this.state.habitHistory.length === 0) {
       habitHistoryId = 1
     } else {
@@ -143,25 +144,31 @@ class App extends React.Component {
   }
 
   setDate = () => {
-    let today = new Date()
+    //get new date for today
+    let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0');
     let yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
-    let {days} = this.context
-    let foundDate = findDate(days, today)
+    let {days} = this.state;
+    //find date in state
+    let foundDate = findDate(days, today);
 
     if(!foundDate) {
+      //if date is not found in state
       if(!this.state.habitHistory.length) {
+        //if history has no length, then treat this as the first day
         this.setFirstDay()
         return
       } else {
+        //if there is a history of habits, assume previous week is over
         this.setState({
           day: 8
         })
       }
     } else {
-      let day = foundDate.dayNumber
+      //if found then set the day in the state as the dayNumber for that date
+      let day = foundDate.dayNumber;
       this.setState({
         day
       })
@@ -169,7 +176,7 @@ class App extends React.Component {
   }
 
   setFirstDay = () => {
-    let newHabitHistory = this.state.habitHistory
+    let newHabitHistory = this.state.habitHistory;
 
     function loopOverHabits(newHabitHistory) {
       for(let i = 0; i < newHabitHistory.length; i++) {
@@ -178,10 +185,12 @@ class App extends React.Component {
         }
       }
       return newHabitHistory
-    }
+    };
 
     if(newHabitHistory.length) {
-      loopOverHabits(newHabitHistory)
+      //if the history has habits in it then loop over it and set all habit/day
+      //values to false so that there is technically no history of habit logging
+      loopOverHabits(newHabitHistory);
       HabitsHistoryApiService.patchHistory(newHabitHistory)
       .then(
         this.setState({
@@ -194,18 +203,20 @@ class App extends React.Component {
     }
 
     setTimeout(() => {
-      let newDays = this.state.days
+      //update days by setting current date as the first date and then looping over
+      //array and setting dates for the next week
+      let newDays = this.state.days;
       for(let i = 0; i < this.state.days.length; i++) {
-      let today = new Date();
-      let nextDay = new Date(today.setDate(today.getDate() + i));
-      let dd = String(nextDay.getDate()).padStart(2, '0');
-      let mm = String(nextDay.getMonth() + 1).padStart(2, '0');
-      let yyyy = today.getFullYear();
-      let stringDate = mm + '/' + dd + '/' + yyyy;
-      newDays[i].date = stringDate
+        let today = new Date();
+        let nextDay = new Date(today.setDate(today.getDate() + i));
+        let dd = String(nextDay.getDate()).padStart(2, '0');
+        let mm = String(nextDay.getMonth() + 1).padStart(2, '0');
+        let yyyy = today.getFullYear();
+        let stringDate = mm + '/' + dd + '/' + yyyy;
+        newDays[i].date = stringDate
       }
       this.updateDays(newDays)
-    }, 1000)
+    }, 1000);
     
   }
 
@@ -237,8 +248,8 @@ class App extends React.Component {
       <ApiContext.Provider value = {value}>
         <div className='App'>
           <div className="navbar">
-            <Collapsible trigger = {<><span className="nav-title">Menu</span><i class="fas fa-chevron-down"></i></>}
-              triggerWhenOpen = {<><span className="nav-title">Menu</span><i class="fas fa-chevron-up"></i></>}
+            <Collapsible trigger = {<><span className="nav-title">Menu</span><i className="fas fa-chevron-down"></i></>}
+              triggerWhenOpen = {<><span className="nav-title">Menu</span><i className="fas fa-chevron-up"></i></>}
             >
               <ul className= 'nav-list'>
                   <li className="nav-item">

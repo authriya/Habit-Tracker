@@ -31,8 +31,8 @@ class AddHabit extends React.Component {
         const habit = {
             name: this.state.name, 
             description: this.state.description
-        }
-        this.setState({error: null})
+        };
+        this.setState({error: null});
         HabitsApiService.postHabit(habit)
             .then((habit) => {
                 HabitsHistoryApiService.postHistory({
